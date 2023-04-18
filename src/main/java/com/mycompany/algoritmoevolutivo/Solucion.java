@@ -24,6 +24,7 @@ public class Solucion implements Comparable<Solucion>{
     }
     
     public Solucion(Solucion sol){
+        random = new Random();
         for (int i = 0; i < 8; i++){
             System.arraycopy(sol.matriz[i], 0, this.matriz[i], 0, sol.matriz.length);
         }
@@ -120,7 +121,7 @@ public class Solucion implements Comparable<Solucion>{
             boolean reinaMovida = false;
             while (!reinaMovida){
                 List<Integer> posicionesReinas = new ArrayList<>();
-                int fila = (int)(Math.random()*8);
+                int fila = random.nextInt(8);
                 int contadorReinasFila = 0;
                 for (int i = 0; i < 8; i++){
                     if (nueva.matriz[fila][i] == 1){
@@ -132,8 +133,8 @@ public class Solucion implements Comparable<Solucion>{
                     int columna = posicionesReinas.get((int)(Math.random()*posicionesReinas.size()));
                     nueva.matriz[fila][columna] = 0;
                     do {
-                        int columnaAleatoria = (int)(Math.random()*8);
-                        int filaAleatoria = (int)(Math.random()*8);
+                        int columnaAleatoria = random.nextInt(8);
+                        int filaAleatoria = random.nextInt(8);
                         if ((filaAleatoria != fila ||columnaAleatoria != columna) &&
                                 nueva.matriz[filaAleatoria][columnaAleatoria] == 0){
                             nueva.matriz[filaAleatoria][columnaAleatoria] = 1;
@@ -205,8 +206,8 @@ public class Solucion implements Comparable<Solucion>{
             }
         }
         while(numeroReinas < 8){
-            int columnaAleatoria = (int)(Math.random()*8);
-            int filaAleatoria = (int)(Math.random()*8);
+            int columnaAleatoria = random.nextInt(8);
+            int filaAleatoria = random.nextInt(8);
             if (matriz[filaAleatoria][columnaAleatoria] == 0){
                 matriz[filaAleatoria][columnaAleatoria] = 1;
                 numeroReinas++;
@@ -214,7 +215,7 @@ public class Solucion implements Comparable<Solucion>{
         }
         while (numeroReinas > 8){
             List<Integer> posicionesReinas = new ArrayList<>();
-            int fila = (int)(Math.random()*8);
+            int fila = random.nextInt(8);
             int contadorReinasFila = 0;
             for (int i = 0; i < 8; i++){
                 if (matriz[fila][i] == 1){
