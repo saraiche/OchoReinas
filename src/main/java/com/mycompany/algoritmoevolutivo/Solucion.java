@@ -131,7 +131,8 @@ public class Solucion implements Comparable<Solucion>{
                     do {
                         int columnaAleatoria = (int)(Math.random()*7);
                         int filaAleatoria = (int)(Math.random()*7);
-                        if (nueva.matriz[filaAleatoria][columnaAleatoria] == 0){
+                        if ((filaAleatoria != fila ||columnaAleatoria != columna) &&
+                                nueva.matriz[filaAleatoria][columnaAleatoria] == 0){
                             nueva.matriz[filaAleatoria][columnaAleatoria] = 1;
                             reinaMovida = true;
                         }
@@ -146,18 +147,14 @@ public class Solucion implements Comparable<Solucion>{
     public Solucion cruzar(float probabilidadCruza, Solucion pareja){
         Solucion copia = new Solucion();
         float ordenCruza = (float)(Math.random());
-        if (ordenCruza <= 0.50){
+        if (ordenCruza < 0.50){
             float probabilidadCruzaSolucion = (float)(Math.random());
             if (probabilidadCruzaSolucion < probabilidadCruza){
-                for (int i = 0; i<8; i++){
-                    for (int j = 0; j<4; j++){
-                        copia.matriz[i][j] = matriz[i][j];
-                    }
+                for (int i = 0; i<4; i++){
+                    System.arraycopy(matriz[i], 0, copia.matriz[i], 0, matriz[i].length);
                 }
-                for (int i = 0; i<8; i++){
-                    for (int j = 4; j<8; j++){
-                        copia.matriz[i][j] = pareja.matriz[i][j];
-                    }
+                for (int i = 4; i<8; i++){
+                    System.arraycopy(pareja.matriz[i-4], 0, copia.matriz[i], 0, pareja.matriz[i].length);
                 }
                 /**
                  * Probada con Probabilidad de cruza recibida = 1 y orden de cruza menor a 0.5
@@ -168,15 +165,11 @@ public class Solucion implements Comparable<Solucion>{
         else {
             float probabilidadCruzaSolucion = (float)(Math.random());
             if (probabilidadCruzaSolucion < probabilidadCruza){
-                for (int i = 0; i<8; i++){
-                    for (int j = 0; j<4; j++){
-                        copia.matriz[i][j] = pareja.matriz[i][j];
-                    }
+                for (int i = 0; i<4; i++){
+                    System.arraycopy(pareja.matriz[i], 0, copia.matriz[i], 0, pareja.matriz[i].length);
                 }
-                for (int i = 0; i<8; i++){
-                    for (int j = 4; j<8; j++){
-                        copia.matriz[i][j] = matriz[i][j];
-                    }
+                for (int i = 4; i<8; i++){
+                    System.arraycopy(matriz[i-4], 0, copia.matriz[i], 0, matriz[i].length);
                 }
                 /**
                  * Probada con Probabilidad de cruza recibida = 1 y orden de cruza mayor a 0.5
@@ -195,6 +188,7 @@ public class Solucion implements Comparable<Solucion>{
          * Probado con Probabilida de cruza recibida = 0 y orden de cruza menor a 0.5
          */
         copia.matriz = this.matriz;
+        System.out.println("Llegó hasta acá");
         return copia;
     }
     
