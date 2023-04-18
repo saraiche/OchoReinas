@@ -14,24 +14,7 @@ import java.util.ArrayList;
 public class AlgoritmoEvolutivo {
 
     public static void main(String[] args) {
-       Poblacion poblacion = new Poblacion(100,40,10000,1,1);
+       Poblacion poblacion = new Poblacion(30,100,10000,1,1);
         poblacion.IniciarAlgoritmoEvolutivo();      
-        
-       /* Solucion sol1 = new Solucion();
-        sol1.inicializarSolucion();
-        sol1.imprimirTablero();
-        System.out.println("");
-        Solucion sol2 = new Solucion();
-        sol2.inicializarSolucion();
-        sol2.imprimirTablero();
-        for(int i = 0; i < 5; i ++){
-            System.out.println("**** CRUZA " + (i+1) + "******");
-            sol1 = sol1.cruzar(1, sol2);
-            sol1.imprimirTablero();
-            System.out.println("");
-            sol2 = sol2.cruzar(1, sol1);
-            sol2.imprimirTablero();
-            System.out.println("");
-        }*/
     }
 }
