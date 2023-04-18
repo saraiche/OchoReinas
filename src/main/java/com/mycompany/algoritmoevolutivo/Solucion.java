@@ -160,9 +160,6 @@ public class Solucion implements Comparable<Solucion>{
                 for (int i = 4; i<8; i++){
                     System.arraycopy(pareja.matriz[i], 0, copia.matriz[i], 0, pareja.matriz[i].length);
                 }
-                /**
-                 * Probada con Probabilidad de cruza recibida = 1 y orden de cruza menor a 0.5
-                 */
                 return copia;
             }
         }
@@ -175,22 +172,13 @@ public class Solucion implements Comparable<Solucion>{
                 for (int i = 4; i<8; i++){
                     System.arraycopy(matriz[i], 0, copia.matriz[i], 0, matriz[i].length);
                 }
-                /**
-                 * Probada con Probabilidad de cruza recibida = 1 y orden de cruza mayor a 0.5
-                 */
                 return copia;
             }
-            /**
-             *  Probada con Probabilidad de cruza recibida = 0 y orden de cruza mayor a 0.5
-             */
             else {
                 copia.matriz = pareja.matriz;
                 return copia;
             }
         }
-        /**
-         * Probado con Probabilida de cruza recibida = 0 y orden de cruza menor a 0.5
-         */
         copia.matriz = this.matriz;
         System.out.println("Llegó hasta acá");
         return copia;
