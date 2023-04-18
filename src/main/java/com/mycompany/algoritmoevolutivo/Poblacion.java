@@ -41,13 +41,12 @@ public class Poblacion {
         poblacion.sort((Solucion sol1, Solucion sol2) -> Double.compare((double)sol1.getAptitud(), (double)sol2.getAptitud()));
         int generacionActual = 1;
         boolean solucionEncontrada = false;
-        while (!solucionEncontrada){
+        while (!solucionEncontrada && generacionActual <= generaciones){
             for (int i = 0; i < tamanio; i++){
                float decremento = 1.0f - ((i+1.0f) * (1.0f / (tamanio + 1 )));
                poblacion.get(i).setProbabilidad(decremento);
             }
             int padresGenerados = 0;
-            
             int iterador = tamanio-1;
             while (padresGenerados < (tamanio * (float)(proporcionPadres/100.0f))){
                 float aleatorio = (float)Math.random();
@@ -81,14 +80,14 @@ public class Poblacion {
             
             poblacion.addAll(hijos);
             hijos.clear();
-            
             System.out.println("Generación: " + generacionActual);
-         //   poblacion.get(0).imprimirTablero();
-            System.out.println("Aptitud: " + poblacion.get(0).getAptitud()+"\n");
+            System.out.println("Aptitud: " + poblacion.get(0).getAptitud());
+            poblacion.get(0).imprimirTablero();
             if (poblacion.get(0).getAptitud() == 0){
                 solucionEncontrada = true;
             }
             generacionActual++;
+            
         }
     }
 }
