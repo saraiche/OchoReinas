@@ -7,6 +7,7 @@ package com.mycompany.algoritmoevolutivo;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 /**
  *
@@ -16,8 +17,10 @@ public class Solucion implements Comparable<Solucion>{
     public int[][] matriz = new int[8][8];
     private int aptitud;
     private float probabilidad;
+    private Random random;
     
     public Solucion(){
+         random = new Random();
     }
     
     public Solucion(Solucion sol){
@@ -46,8 +49,8 @@ public class Solucion implements Comparable<Solucion>{
         matriz = new int[8][8];
         int numeroReinas = 0;
         while(numeroReinas < 8){
-            int x = (int)(Math.random()*7);
-            int y = (int)(Math.random()*7);
+            int x = random.nextInt(8);
+            int y = random.nextInt(8);
             if (matriz[x][y] != 1){
                 matriz[x][y] = 1;
                 numeroReinas++;
@@ -117,7 +120,7 @@ public class Solucion implements Comparable<Solucion>{
             boolean reinaMovida = false;
             while (!reinaMovida){
                 List<Integer> posicionesReinas = new ArrayList<>();
-                int fila = (int)(Math.random()*7);
+                int fila = (int)(Math.random()*8);
                 int contadorReinasFila = 0;
                 for (int i = 0; i < 8; i++){
                     if (nueva.matriz[fila][i] == 1){
@@ -126,11 +129,11 @@ public class Solucion implements Comparable<Solucion>{
                     }
                 }
                 if (!posicionesReinas.isEmpty()){
-                    int columna = posicionesReinas.get((int)(Math.random()*posicionesReinas.size()-1));
+                    int columna = posicionesReinas.get((int)(Math.random()*posicionesReinas.size()));
                     nueva.matriz[fila][columna] = 0;
                     do {
-                        int columnaAleatoria = (int)(Math.random()*7);
-                        int filaAleatoria = (int)(Math.random()*7);
+                        int columnaAleatoria = (int)(Math.random()*8);
+                        int filaAleatoria = (int)(Math.random()*8);
                         if ((filaAleatoria != fila ||columnaAleatoria != columna) &&
                                 nueva.matriz[filaAleatoria][columnaAleatoria] == 0){
                             nueva.matriz[filaAleatoria][columnaAleatoria] = 1;
@@ -202,8 +205,8 @@ public class Solucion implements Comparable<Solucion>{
             }
         }
         while(numeroReinas < 8){
-            int columnaAleatoria = (int)(Math.random()*7);
-            int filaAleatoria = (int)(Math.random()*7);
+            int columnaAleatoria = (int)(Math.random()*8);
+            int filaAleatoria = (int)(Math.random()*8);
             if (matriz[filaAleatoria][columnaAleatoria] == 0){
                 matriz[filaAleatoria][columnaAleatoria] = 1;
                 numeroReinas++;
@@ -211,7 +214,7 @@ public class Solucion implements Comparable<Solucion>{
         }
         while (numeroReinas > 8){
             List<Integer> posicionesReinas = new ArrayList<>();
-            int fila = (int)(Math.random()*7);
+            int fila = (int)(Math.random()*8);
             int contadorReinasFila = 0;
             for (int i = 0; i < 8; i++){
                 if (matriz[fila][i] == 1){
@@ -220,7 +223,7 @@ public class Solucion implements Comparable<Solucion>{
                 }
             }
             if (!posicionesReinas.isEmpty()){
-                int columna = posicionesReinas.get((int)(Math.random()*posicionesReinas.size()-1));
+                int columna = posicionesReinas.get((int)(Math.random()*posicionesReinas.size()));
                 matriz[fila][columna] = 0;
                 numeroReinas--;
             }
