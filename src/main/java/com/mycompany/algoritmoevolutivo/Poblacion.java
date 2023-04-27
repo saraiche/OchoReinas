@@ -47,12 +47,13 @@ public class Poblacion {
                poblacion.get(i).setProbabilidad(decremento);
             }
             int padresGenerados = 0;
-            int iterador = tamanio-1;
+            int iterador = 0;
             while (padresGenerados < (tamanio * (float)(proporcionPadres/100.0f))){
+                int posicion = tamanio - iterador - 1;
                 float aleatorio = (float)Math.random();
-                float decremento = 1.0f - ((iterador+1.0f) * (1.0f / (tamanio + 1 )));
+                float decremento = 1.0f - ((posicion+1.0f) * (1.0f / (tamanio + 1 )));
                 if (aleatorio < decremento){
-                    padres.add(poblacion.get(iterador));
+                    padres.add(poblacion.get(posicion));
                     padresGenerados++;
                 }
                 iterador = (iterador+1)%tamanio;

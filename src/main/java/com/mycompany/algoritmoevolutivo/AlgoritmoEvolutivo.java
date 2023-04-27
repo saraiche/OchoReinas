@@ -15,6 +15,6 @@ public class AlgoritmoEvolutivo {
 
     public static void main(String[] args) {
        Poblacion poblacion = new Poblacion(30,100,10000,1,1);
-        poblacion.IniciarAlgoritmoEvolutivo();      
+       poblacion.IniciarAlgoritmoEvolutivo();      
     }
 }
